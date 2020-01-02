@@ -11,9 +11,10 @@ RUN set -xe && \
     curl -sSL "$S6_URL" -o /tmp/s6-overlay-amd64.tar.gz && \
     curl -sSL "$MEGA_URL" -o /tmp/megacmd.deb && \
     apt install -y /tmp/megacmd.deb && \
+    tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" && \
+    tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin && \
     apt remove -y curl && \
     apt-get clean && \
-    tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm -rf /tmp/* var/lib/apt/lists/* /var/tmp/*
 
 COPY root/ /
