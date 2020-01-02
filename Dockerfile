@@ -15,5 +15,7 @@ RUN set -xe && \
     apt-get clean && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm -rf /tmp/* var/lib/apt/lists/* /var/tmp/*
-    
+
+COPY root/ /
+
 ENTRYPOINT ["/init"]
